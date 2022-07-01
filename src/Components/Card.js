@@ -17,10 +17,10 @@ const Card = (props) => {
     return(
         <div className="layed">
         <div className="layoutcard">
-            <p>{props.ttask}</p>
+            <p style={{fontSize:"20px"}}>{props.ttask}</p>
             <button onClick={()=>deleteTask(props.tname,props.ttask,props.tcheck)}><i class="fa-regular fa-trash-can" style={{color:"white"}}></i></button>
         </div>
-        <p style={{color:"grey"}}>Name:- {props.tname}</p>
+        <p style={{color:"grey",fontStyle:"italic",fontSize:"13px"}}>Task written by:- {props.tname}</p>
         </div>
     );
 }
