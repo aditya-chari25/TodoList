@@ -13,21 +13,21 @@ function App() {
   const[modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(()=>{
-    Axios.get("http://localhost:3001/getTask")
+    Axios.get("https://mern-aditaskapp.herokuapp.com/getTask")
     .then((res)=>{
       setListTasks(res.data)
     })
   },[])
 
   const createTask =()=>{
-    Axios.post("http://localhost:3001/createTask",{
+    Axios.post("https://mern-aditaskapp.herokuapp.com/createTask",{
       name:name,
       task:taskname,
       check,
     })
     .then((res)=>{
       setModalIsOpen(false)
-      Axios.get("http://localhost:3001/getTask")
+      Axios.get("https://mern-aditaskapp.herokuapp.com/getTask")
     .then((res)=>{
       setListTasks(res.data)
     })

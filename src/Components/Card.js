@@ -4,7 +4,7 @@ import './cardlayout.css'
 
 const Card = (props) => {
     const deleteTask =(id,ttask)=>{
-        Axios.delete(`http://localhost:3001/deleteTask/${id}`)
+        Axios.delete(`https://mern-aditaskapp.herokuapp.com/deleteTask/${id}`)
         .then(()=>{
             alert("Task deleted ",ttask);
             window.location.reload(false);
@@ -15,7 +15,7 @@ const Card = (props) => {
             ob3=1
         else
             ob3=0
-        Axios.put("http://localhost:3001/updateTask",{
+        Axios.put("https://mern-aditaskapp.herokuapp.com/updateTask",{
           id:id,
           check:ob3
         })
