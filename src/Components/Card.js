@@ -3,14 +3,25 @@ import Axios from "axios";
 import './cardlayout.css'
 
 const Card = (props) => {
-    const deleteTask =(ob1,ob2,ob3)=>{
-        Axios.post("http://localhost:3001/deleteTask",{
-          ob1,
-          ob2,
-          ob3
+    const deleteTask =(id,ttask)=>{
+        Axios.delete(`http://localhost:3001/deleteTask/${id}`)
+        .then(()=>{
+            alert("Task deleted ",ttask);
+            window.location.reload(false);
+        })
+    }
+    const updateTask =(id,ob3)=>{
+        if(ob3==0)
+            ob3=1
+        else
+            ob3=0
+        Axios.put("http://localhost:3001/updateTask",{
+          id:id,
+          check:ob3
         })
         .then((res)=>{
-            alert(ob2)
+            alert(ob3);
+            window.location.reload(false);
     
         });
     }
@@ -18,7 +29,11 @@ const Card = (props) => {
         <div className="layed">
         <div className="layoutcard">
             <p style={{fontSize:"20px"}}>{props.ttask}</p>
-            <button onClick={()=>deleteTask(props.tname,props.ttask,props.tcheck)}><i class="fa-regular fa-trash-can" style={{color:"white"}}></i></button>
+            <button className="hellob" onClick={()=>deleteTask(props.tid,props.ttask)}><i class="fa-regular fa-trash-can" style={{color:"white"}}></i></button>
+            {props.tcheck ==0 &&
+            <button onClick={()=>updateTask(props.tid,props.tcheck)}><i class="fa-solid fa-circle-xmark" style={{color:"white"}}></i></button>}
+            {props.tcheck==1 &&
+            <button onClick={()=>updateTask(props.tid,props.tcheck)}><i class="fa-solid fa-circle-check" style={{color:"white"}}></i></button>}
         </div>
         <p style={{color:"grey",fontStyle:"italic",fontSize:"13px"}}>Task written by:- {props.tname}</p>
         </div>

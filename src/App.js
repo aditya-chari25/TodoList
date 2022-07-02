@@ -41,7 +41,8 @@ function App() {
 
       <center><p style={{color:'white',fontSize:'30px',fontWeight:'500'}}>Todo List<span style={{marginLeft:'20px'}}></span>
       <button onClick={()=> setModalIsOpen(true)}><i class="fa-solid fa-circle-plus"></i></button></p></center>
-
+      <span style={{color:'white',fontSize:'17px'}}><center><p><i class="fa-solid fa-circle-xmark" style={{color:"white"}}></i> - Not Completed <span style={{marginRight:'20px'}}></span> <i class="fa-solid fa-circle-check" style={{color:"white"}}></i> - Completed</p></center>
+      </span>
       <Modal isOpen={modalIsOpen} 
       shouldCloseOnOverlayClick={true}
       onRequestClose={()=>setModalIsOpen(false)}
@@ -74,10 +75,10 @@ function App() {
       </Modal>
 
       <div className="tasks">
-        {listTasks.map((task)=>{
+        {listTasks.map((task,key)=>{
           return(
-            <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-            <Card tname={task.name} ttask={task.task} tcheck={task.check}/>
+            <div key = {key} style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'10px'}}>
+            <Card tname={task.name} ttask={task.task} tcheck={task.check} tid={task['_id']}/>
             </div>
           )
         })}
